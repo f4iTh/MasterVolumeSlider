@@ -303,11 +303,9 @@ end
 
 local function on_post_change_player_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.playerVolume = snowWwiseManager._CurrentVolumePlayerVoice
-  end
+    defaultVolumes.playerVolume = snowWwiseManager:get_field("_CurrentVolumePlayerVoice")
 
-  if volumeChanged.player.postMethod and not volumeChanged.player.preMethod then
-    if snowWwiseManager then
+    if volumeChanged.player.postMethod and not volumeChanged.player.preMethod then
       snowWwiseManager:set_field("_CurrentVolumePlayerVoice", defaultVolumes.playerVolume * (settings.volume / 100))
       update_situation_voice_controllers("update_player")
     end
@@ -320,7 +318,7 @@ end
 
 local function on_post_change_follower_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.followerVolume = snowWwiseManager._CurrentVolumeServantVoice
+    defaultVolumes.followerVolume = snowWwiseManager:get_field("_CurrentVolumeServantVoice")
 
     if volumeChanged.follower.postMethod and not volumeChanged.follower.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeServantVoice", defaultVolumes.followerVolume * (settings.volume / 100))
@@ -335,7 +333,7 @@ end
 
 local function on_post_change_npc_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.npcVolume = snowWwiseManager._CurrentVolumeNPCVoice
+    defaultVolumes.npcVolume = snowWwiseManager:get_field("_CurrentVolumeNPCVoice")
 
     if volumeChanged.npc.postMethod and not volumeChanged.npc.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeNPCVoice", defaultVolumes.npcVolume * (settings.volume / 100))
@@ -349,7 +347,7 @@ end
 
 local function on_post_change_music_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.musicVolume = snowWwiseManager._CurrentVolumeMusic
+    defaultVolumes.musicVolume = snowWwiseManager:get_field("_CurrentVolumeMusic")
 
     if volumeChanged.music.postMethod and not volumeChanged.music.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeMusic", defaultVolumes.musicVolume * (settings.volume / 100))
@@ -363,7 +361,7 @@ end
 
 local function on_post_change_soundeffect_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.soundEffectVolume = snowWwiseManager._CurrentVolumeSe
+    defaultVolumes.soundEffectVolume = snowWwiseManager:get_field("_CurrentVolumeSe")
 
     if volumeChanged.soundEffect.postMethod and not volumeChanged.soundEffect.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeSe", defaultVolumes.soundEffectVolume * (settings.volume / 100))
@@ -377,7 +375,7 @@ end
 
 local function on_post_change_ui_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.uiVolume = snowWwiseManager._CurrentVolumeUI
+    defaultVolumes.uiVolume = snowWwiseManager:get_field("_CurrentVolumeUI")
 
     if volumeChanged.ui.postMethod and not volumeChanged.ui.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeUI", defaultVolumes.uiVolume * (settings.volume / 100))
@@ -391,7 +389,7 @@ end
 
 local function on_post_change_voicechat_volume(retVal)
   if snowWwiseManager then
-    defaultVolumes.voiceChatVolume = snowWwiseManager._CurrentVolumeVoiceChat
+    defaultVolumes.voiceChatVolume = snowWwiseManager:get_field("_CurrentVolumeVoiceChat")
 
     if volumeChanged.voiceChat.postMethod and not volumeChanged.voiceChat.preMethod then
       snowWwiseManager:set_field("_CurrentVolumeVoiceChat", defaultVolumes.voiceChatVolume * (settings.volume / 100))
