@@ -9,7 +9,6 @@ local settings = {
 
 local modInfo = {
   name = "Master Volume Slider",
-  author = "f4iTh",
   version = "1.0.0"
 }
 
@@ -55,7 +54,7 @@ local function load_settings()
   local loadedSettings = json.load_file("MasterVolumeSlider.json")
   if loadedSettings then
     settings = loadedSettings
-    log.info("[MasterVolumeSlider] successfully loaded MasterVolumeSlider.json")
+    -- log.info("[MasterVolumeSlider] successfully loaded MasterVolumeSlider.json")
   end
 end
 
@@ -76,7 +75,7 @@ local function update_situation_voice_controllers(context)
 
   local isVillageMethod = sdk.find_type_definition("snow.wwise.WwiseSituationVoiceManager"):get_method("isVillage")
   if not isVillageMethod then
-    log.error("[MasterVolumeSlider] could not find isVillage method")
+    -- log.error("[MasterVolumeSlider] could not find isVillage method")
     return
   end
 
@@ -93,24 +92,24 @@ local function update_situation_voice_controllers(context)
   end
 
   if not currentSituationVoiceControllers then
-    log.error("[MasterVolumeSlider] could not find situation voice controllers")
+    -- log.error("[MasterVolumeSlider] could not find situation voice controllers")
     return
   end
 
   if not currentSituationVoiceControllerListTypeDef then
-    log.error("[MasterVolumeSlider] situation voice controller list type definition has not been found")
+    -- log.error("[MasterVolumeSlider] situation voice controller list type definition has not been found")
     return
   end
 
   local situationVoiceControllerListCountMethod = currentSituationVoiceControllerListTypeDef:get_method("get_Count")
   if not situationVoiceControllerListCountMethod then
-    log.error("[MasterVolumeSlider] could not find get_Count method")
+    -- log.error("[MasterVolumeSlider] could not find get_Count method")
     return
   end
 
   local situationVoiceControllerListItemMethod = currentSituationVoiceControllerListTypeDef:get_method("get_Item")
   if not situationVoiceControllerListItemMethod then
-    log.error("[MasterVolumeSlider] could not find get_Item method")
+    -- log.error("[MasterVolumeSlider] could not find get_Item method")
     return
   end
 
@@ -123,13 +122,13 @@ local function update_situation_voice_controllers(context)
 
     local player = voiceController:get_field("_Player")
     if not player then
-      log.error("[MasterVolumeSlider] could not get player from situation controller")
+      -- log.error("[MasterVolumeSlider] could not get player from situation controller")
       goto continue
     end
 
     local playerMonitoredParams = player:get_field("_RefWwisePlayerMonitoredParameters")
     if not playerMonitoredParams then
-      log.error("[MasterVolumeSlider] could not find player monitored params")
+      -- log.error("[MasterVolumeSlider] could not find player monitored params")
       goto continue
     end
 
@@ -247,19 +246,19 @@ end
 local function on_pre_add_situation_voice_controller(args)
   local situationVoiceController = sdk.to_managed_object(args[3])
   if not situationVoiceController then
-    log.error("[MasterVolumeSlider] could not get situation voice controller")
+    -- log.error("[MasterVolumeSlider] could not get situation voice controller")
     return
   end
 
   local player = situationVoiceController:get_field("_Player")
   if not player then
-    log.error("[MasterVolumeSlider] could not get player from situation controller")
+    -- log.error("[MasterVolumeSlider] could not get player from situation controller")
     return
   end
 
   local playerMonitoredParams = player:get_field("_RefWwisePlayerMonitoredParameters")
   if not playerMonitoredParams then
-    log.error("[MasterVolumeSlider] could not find player monitored params")
+    -- log.error("[MasterVolumeSlider] could not find player monitored params")
     return
   end
 
@@ -274,19 +273,19 @@ end
 local function on_pre_add_lobby_situation_voice_controller(args)
   local situationVoiceController = sdk.to_managed_object(args[3])
   if not situationVoiceController then
-    log.error("[MasterVolumeSlider] could not get situation voice controller")
+    -- log.error("[MasterVolumeSlider] could not get situation voice controller")
     return
   end
 
   local player = situationVoiceController:get_field("_Player")
   if not player then
-    log.error("[MasterVolumeSlider] could not get player from situation controller")
+    -- log.error("[MasterVolumeSlider] could not get player from situation controller")
     return
   end
 
   local playerMonitoredParams = player:get_field("_RefWwisePlayerMonitoredParameters")
   if not playerMonitoredParams then
-    log.error("[MasterVolumeSlider] could not find player monitored params")
+    -- log.error("[MasterVolumeSlider] could not find player monitored params")
     return
   end
 
@@ -522,6 +521,9 @@ if modUi then
     settings_volume_changed, settings.volume = modUi.Slider("Master Volume", settings.volume, 0, 100, "Adjust master volume.")
     handle_volume_changed(settings_volume_changed)
 
+    modUi.Header("Mod Info")
+    modUi.Label("Version: " .. modInfo.version)
+    
     if settings_volume_changed then
       save_settings()
     end
