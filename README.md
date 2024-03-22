@@ -13,3 +13,7 @@ You can adjust the master volume from the REFramework menu.
 This mod has [Custom In-Game Mod Menu API](https://www.nexusmods.com/monsterhunterrise/mods/1292) support.
 
 ![](docs/images/custommenu.png)
+
+## See also
+
+- [Release notes](docs/release-notes.md)
